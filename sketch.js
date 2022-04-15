@@ -14,7 +14,7 @@ const QUIZ = [
     "tip": "Type 1 usually requires more frequent treatment with daily insulin shots, though both are dangerous."
   },
   {
-    "question": "How much physical activity daily does the CDC reccomend for adolescents?",
+    "question": "How much physical activity daily does the CDC recommend for adolescents?",
     "answers": [
       "30 minutes",
       "60 minutes",
@@ -34,6 +34,94 @@ const QUIZ = [
     ],
     "correct": 3,
     "tip": "Type 2 diabetes creates a resistance to insulin, which helps cells process the sugar in the bloodstream."
+  },
+  {
+    "question": "Where is insulin produced?",
+    "answers": [
+      "The liver",
+      "The appendix",
+      "The pancreas",
+      "The heart"
+    ],
+    "correct": 2,
+    "tip": "Insulin is produced in the pancreas in response to glucose."
+  },
+  {
+    "question": "Which one of these complications can diabetes cause?",
+    "answers": [
+      "Heart disease",
+      "Stroke",
+      "Kidney failure",
+      "All of the above"
+    ],
+    "correct": 3,
+    "tip": "Insulin is produced in the pancreas in response to glucose."
+  },
+  {
+    "question": "Which one of these fats can increase one's risk for type 2 diabetes?",
+    "answers": [
+      "Poly-unsaturated fats",
+      "Saturated fats",
+      "Unsaturated fats",
+      "All of the above"
+    ],
+    "correct": 1,
+    "tip": "Saturated fats, such as in red meats / dairy, can increase one's risk for type 2 diabetes. Poly-unsaturated and unsaturated fats can actually lower risk."
+  },
+  {
+    "question": "Who is the most at risk of diabetes?",
+    "answers": [
+      "Children",
+      "White people (20-30yo)",
+      "People of color (20-30yo)",
+      "People of color (45+yo)"
+    ],
+    "correct": 3,
+    "tip": "People of color may have less access to healthy food and older people normally have a reduced insulin production"
+  },
+  {
+    "question": "What is not a common symptom of diabetes 2?",
+    "answers": [
+      "Fatigue",
+      "Tingling limbs",
+      "Frequent urination",
+      "Cough"
+    ],
+    "correct": 3,
+    "tip": "A cough is not frequently associated with diabetes 2."
+  },
+  {
+    "question": "Which of the following is not used to test for diabetes?",
+    "answers": [
+      "Sucrose test",
+      "CMP",
+      "Urine test",
+      "All of them are used to test"
+    ],
+    "correct": 0,
+    "tip": "Sucrose doesn't have anyhting to do with diabetes. It is commonly mixed up with glucose, which is what is stored in fat cells."
+  },
+  {
+    "question": "What's an example of an ultra-processed food?",
+    "answers": [
+      "Ketchup",
+      "Bacon",
+      "Tofu",
+      "Wine"
+    ],
+    "correct": 1,
+    "tip": "Bacon and hot dogs are actually listed as type 1 carcinogens by the USDA. This doesn't mean that they're off the table, but only in moderation."
+  },
+  {
+    "question": "What is not benificial for preventing diabetes 2?",
+    "answers": [
+      "Eating less sugary foods",
+      "Limiting screen time",
+      "Attempting to gain weight",
+      "More daily physical activity"
+    ],
+    "correct": 2,
+    "tip": "Gaining more weight would be detremental to preventing diabetes 2, especially if eating processed foods."
   }
 ];
 
