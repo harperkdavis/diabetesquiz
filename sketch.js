@@ -3,37 +3,37 @@ let keys = {};
 
 const QUIZ = [
   {
-    "question": "Who is among us?",
+    "question": "Is diabetes 1 or diabetes 2 more likely to raise major health complications?",
     "answers": [
-      "Brett Mathes",
-      "Nathan Chen",
-      "I don't play among us",
-      "Red"
+      "Diabetes 1",
+      "Diabetes 2",
+      "Equally dangerous",
+      "Neither is dangerous"
+    ],
+    "correct": 0,
+    "tip": "Type 1 usually requires more frequent treatment with daily insulin shots, though both are dangerous."
+  },
+  {
+    "question": "How much physical activity daily does the CDC reccomend for adolescents?",
+    "answers": [
+      "30 minutes",
+      "60 minutes",
+      "90 minutes",
+      "120 minutes"
+    ],
+    "correct": 1,
+    "tip": "Excersizing to treat diabetes doesn't have to be hard; it can be as simple as taking a bike ride around the area or signing up for the local sports team."
+  },
+  {
+    "question": "Which of these hormones does type 2 diabetes create a resistance to?",
+    "answers": [
+      "Testosterone",
+      "Adrenaline",
+      "Serotonin",
+      "Insulin"
     ],
     "correct": 3,
-    "tip": "Among moment"
-  },
-  {
-    "question": "Nathan is short?",
-    "answers": [
-      "Yes, definetely",
-      "No shot",
-      "Maybe",
-      "Idk"
-    ],
-    "correct": 0,
-    "tip": "Short moment"
-  },
-  {
-    "question": "Pick the right one",
-    "answers": [
-      "The right one",
-      "The answer to the right",
-      "The left one",
-      "Idk"
-    ],
-    "correct": 0,
-    "tip": "Clearly you know your left and rights"
+    "tip": "Type 2 diabetes creates a resistance to insulin, which helps cells process the sugar in the bloodstream."
   }
 ];
 
@@ -234,7 +234,7 @@ function draw() {
     
 
     fill(0);
-    textSize(48);
+    textSize(32);
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
     text(QUIZ[index].question, 0, -height / 4);
