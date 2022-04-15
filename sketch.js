@@ -10,7 +10,8 @@ const QUIZ = [
       "I don't play among us",
       "Red"
     ],
-    "correct": 3
+    "correct": 3,
+    "tip": "Among moment"
   },
   {
     "question": "Nathan is short?",
@@ -20,7 +21,8 @@ const QUIZ = [
       "Maybe",
       "Idk"
     ],
-    "correct": 0
+    "correct": 0,
+    "tip": "Short moment"
   },
   {
     "question": "Pick the right one",
@@ -30,12 +32,15 @@ const QUIZ = [
       "The left one",
       "Idk"
     ],
-    "correct": 0
+    "correct": 0,
+    "tip": "Clearly you know your left and rights"
   }
 ];
 
 let quizRunning = false;
 let quizComplete = false;
+let showingTip = false;
+
 let score = 1000;
 
 let fullShake = {x: 0, y: 0};
@@ -45,6 +50,8 @@ let index = 0;
 let answersTried = [];
 
 let questionLerp = 0;
+let quizDt = 0;
+let tipLerp = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -65,24 +72,11 @@ function keyReleased() {
 
 function update() {
 
-  
-
   Object.keys(keys).forEach(key => {
     if (keys[key] >= 0) {
       keys[key] += 1;
     }
   });
-
-  if (quizRunning) {
-    shakeAmount = lerp(shakeAmount, 0, 0.1);
-    fullShake = {x: random(-shakeAmount, shakeAmount), y: random(-shakeAmount, shakeAmount)};
-    questionLerp = lerp(questionLerp, 0, 0.1);
-
-    if (frameCount % 30 == 0) {
-      score -= 1;
-    }
-
-  }
 
   if (!quizRunning && keys[' '.charCodeAt(0)] == 1) {
     quizRunning = true;
@@ -93,12 +87,35 @@ function update() {
     index = 0;
     answersTried = [];
     questionLerp = 1;
+    quizDt = 0;
+  }
 
+  if (quizRunning) {
+    if (!showingTip) {
+      shakeAmount = lerp(shakeAmount, 0, 0.1);
+      fullShake = {x: random(-shakeAmount, shakeAmount), y: random(-shakeAmount, shakeAmount)};
+      questionLerp = lerp(questionLerp, 0, 0.1);
+
+      
+
+      if (frameCount % 10 == 0) {
+        score -= 1;
+      }
+
+      quizDt += 1;
+    } else {
+      if (keys[' '.charCodeAt(0)] == 1) {
+        advanceQuestion();
+      }
+    }
+
+    tipLerp = lerp(tipLerp, showingTip ? 1 : 0, 0.2);
   }
 
 }
 
 function advanceQuestion() {
+  showingTip = false;
   index += 1;
   score += 1000;
   answersTried = [];
@@ -111,13 +128,13 @@ function advanceQuestion() {
 }
 
 function mousePressed() {
-  if (quizRunning) {
+  if (quizRunning && !showingTip) {
     for (let i = 0; i < 4; i++) {
       if (mouseX > i * (width / 4) && mouseY > (3 * height / 8) && mouseX < i * (width / 4) + width / 4 && mouseY < (3 * height / 8) + height / 4) {
         if (i == QUIZ[index].correct) {
           if (!answersTried.includes(i)) {
             answersTried.push(i);
-            setTimeout(advanceQuestion, 500);
+            showingTip = true;
           }
         } else {
           shakeAmount = 10;
@@ -174,8 +191,8 @@ function draw() {
     push();
 
     translate(width / 2, height / 2);
-    rotate(map(noise(millis() * 0.001, 300), 0, 1, -0.02, 0.02));
-    translate(map(noise(millis() * 0.001, 100), 0, 1, -10, 10) + fullShake.x, map(noise(millis() * 0.001, 200), 0, 1, -10, 10) + fullShake.y - questionLerp * height / 4);
+    rotate(map(noise(quizDt * 0.01, 300), 0, 1, -0.02, 0.02));
+    translate(map(noise(quizDt * 0.01, 100), 0, 1, -10, 10) + fullShake.x, map(noise(quizDt * 0.01, 200), 0, 1, -10, 10) + fullShake.y - questionLerp * height / 4);
 
     function drawBox(x, y, i) {
 
@@ -238,6 +255,22 @@ function draw() {
     text("Progress", 0, height / 5 + height / 6 - 24);
 
     pop();
+
+    fill(255, 100 * tipLerp);
+    rect(0, 0, width, height);
+
+    stroke(0);
+    fill(255);
+    rect(10, -height / 2 + height * tipLerp - 30, width - 20, 60);
+    
+    noStroke();
+    textAlign(CENTER, CENTER);
+    fill(0);
+    textSize(24);
+    text(QUIZ[index].tip, width / 2, - height / 2 + height * tipLerp);
+
+    textSize(12);
+    text("Press space to continue", width / 2, -height / 2 + height * tipLerp + 22);
   }
 }
 
